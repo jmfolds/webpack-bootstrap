@@ -1,4 +1,5 @@
 const WebpackNotifierPlugin = require('webpack-notifier');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -13,7 +14,7 @@ module.exports = {
     },
     devtool: 'source-map',
     devServer: {
-        contentBase: ".",
+        contentBase: "./dist",
         host: "localhost",
         port: 9000
     },
@@ -47,6 +48,9 @@ module.exports = {
     },
     plugins: [
         new ExtractTextPlugin('[name].css'),
+        new HtmlWebpackPlugin({
+            template: 'src/index.html'
+        }),
         new WebpackNotifierPlugin(),
         // set globals
         new webpack.ProvidePlugin({   
